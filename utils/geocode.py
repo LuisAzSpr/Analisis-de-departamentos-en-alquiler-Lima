@@ -3,11 +3,11 @@ import os
 import requests
 import time
 import numpy as np
-import concurrent.futures
+from utils.configurar_logger import configurar_logger
 from dotenv import load_dotenv
 
 load_dotenv()
-
+logger = configurar_logger("logs/logs.log")
 GEOCODE_API_KEY = os.getenv("GEOCODE_API_KEY")
 
 
@@ -26,12 +26,12 @@ def obtener_direccion(coordenada):
             location_type = result["geometry"]["location_type"]
             type_location = result["types"][0]
             resultado = {"id": coordenada["id"], "direccion": direccion, "precision": location_type,"type":type_location}
-            print(resultado)
+            logger.info(resultado)
             return resultado
         else:
             return {"id": coordenada["id"], "direccion": None, "precision": None,"type":None}
     except Exception as e:
-        print(f"Error con las coordenadas {coordenada}: {e}")
+        logger.error(f"Error con las coordenadas {coordenada}: {e}")
         return {"id": coordenada["id"], "direccion": None, "precision": None,"type":None}
 
 
@@ -47,12 +47,12 @@ def obtener_coordenadas(direccion):
             location_type = result["geometry"]["location_type"]
             type_location = result["types"][0]
             resultado = {"id":direccion["id"], "latitud":location["lat"], "longitud":location["lng"],"precision":location_type,"type":type_location}
-            print(resultado)
+            logger.info(resultado)
             return resultado
         else:
             return {"id":direccion["id"], "latitud":None, "longitud":None,"precision":None,"type":None}
     except Exception as e:
-        print(f"Error con la dirección {direccion}: {e}")
+        logger.error(f"Error con la dirección {direccion}: {e}")
         return {"id":direccion["id"], "latitud":None, "longitud":None,"precision":None,"type":None}
 
 
@@ -68,3 +68,6 @@ def haversine(coord1,coord2):
     c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
 
     return R * c
+
+if __name__ == '__main__':
+    obtener_direccion({"id":1,"latitud":-12.12341,"longitud":-77.1000})

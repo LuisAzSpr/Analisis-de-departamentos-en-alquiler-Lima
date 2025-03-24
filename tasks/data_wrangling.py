@@ -14,14 +14,14 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
+logger = configurar_logger("logs/logs.log")
+
 
 class Datawrangling:
-    def __init__(self,bucket_name='us-central1-composer-dev-lu-620fcc1f-bucket',ruta_lectura=''):
-        self.timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.bucket_name = bucket_name
-        self.ruta_lectura = ruta_lectura
 
-        self.logger = configurar_logger("../logs/datawrangling.log")
+    def __init__(self,ruta_lectura=''):
+        self.timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.ruta_lectura = ruta_lectura
         self.df_transformaciones = []
 
         self.clasificacion_mensajes_sm = '''
@@ -87,7 +87,8 @@ class Datawrangling:
         )
 
     def realizar_data_wrangling(self):
-        df = leer_archivo_desde_gcp(self.bucket_name,self.ruta_lectura)
+
+        df = pd.read_csv(self.ruta_lectura)
 
         df_trans0 = self.formateo(df)
         df_trans1 = self.clasificacion_y_tratamiento_de_propiedades_con_data_inconsitente(df_trans0)
@@ -95,11 +96,10 @@ class Datawrangling:
         df_trans3 = self.imputacion_nulos_usando_la_descripcion(df_trans2)
         df_trans4 = self.imputacion_coordenadas_nulas_con_direccion(df_trans3)
 
-        ruta_local, ruta_gcp = "../csv/data_wrangling.csv", f"data/csv/data_wrangling_{self.timestamp_str}.csv"
+        ruta_local = f"data/csv/data_wrangling_{self.timestamp_str}.csv"
         df_trans4.to_csv(ruta_local,index=False)
-        upload_cs_file(self.bucket_name,ruta_local,ruta_gcp)
 
-        return ruta_gcp
+        return ruta_local
 
     def formateo(self, data):
         """
@@ -146,7 +146,7 @@ class Datawrangling:
             inplace=True
         )
 
-        self.logger.info("1. Terminando formateo!!")
+        logger.info("1. Terminando formateo!!")
         self.df_transformaciones.append(data_copia)
 
         return data_copia
@@ -183,8 +183,8 @@ class Datawrangling:
         indices_alquiler = clasificacion_prop_df.query("propiedad=='departamento' and propuesta=='alquiler'").index
         proporcion = data.loc[indices_no_alquiler, 'precio'].median() / data.loc[indices_alquiler, 'precio'].median()
         if np.round(proporcion) < 20:
-            self.logger.error("Los clasificados como 'venta' no son considerablemente más caros que los de alquiler. Verificar información")
-        self.logger.info(f"Los clasificados como 'venta' cuestan {np.round(proporcion, 0)} veces más que los de alquiler")
+            logger.error("Los clasificados como 'venta' no son considerablemente más caros que los de alquiler. Verificar información")
+        logger.info(f"Los clasificados como 'venta' cuestan {np.round(proporcion, 0)} veces más que los de alquiler")
         indices2 = indices_no_alquiler
 
         # 3. Eliminar índices no deseados
@@ -196,7 +196,7 @@ class Datawrangling:
             variable = fila['variable']
             data_copia.at[indice, variable] = None
 
-        self.logger.info("2. Terminando clasificación de propiedades con data inconsistente!!")
+        logger.info("2. Terminando clasificación de propiedades con data inconsistente!!")
         self.df_transformaciones.append(data_copia)
 
         return data_copia
@@ -211,14 +211,14 @@ class Datawrangling:
         direc_precision_df = pd.DataFrame(direcciones_precision).set_index('id')
         data_merge = pd.merge(data, direc_precision_df, left_index=True, right_index=True, how='left')
 
-        self.logger.info("3. Terminando obtención de dirección y precisión de coordenadas!!")
+        logger.info("3. Terminando obtención de dirección y precisión de coordenadas!!")
 
         self.df_transformaciones.append(data_merge)
 
         print(data_merge['precision'])
 
-        self.logger.info(data_merge['type'].isnull().sum())
-        self.logger.info(data_merge['precision'].isnull().sum())
+        logger.info(data_merge['type'].isnull().sum())
+        logger.info(data_merge['precision'].isnull().sum())
 
         return data_merge
 
@@ -267,23 +267,23 @@ class Datawrangling:
                 data_comparacion[col]
             )
             numero_reducido = data_comparacion[col].isnull().sum() - data_comparacion[f'{col}_fin'].isnull().sum()
-            self.logger.info(f"La variable {col} redujo {numero_reducido} nulos")
+            logger.info(f"La variable {col} redujo {numero_reducido} nulos")
 
         for coincidencia in coincidencias:
             if coincidencia < 0.7:
-                self.logger.error("El % de aciertos es muy bajo")
+                logger.error("El % de aciertos es muy bajo")
                 # Se podría lanzar una excepción aquí si es necesario
 
         columnas = list(tolerancia.keys())
         data_copia.loc[data_comparacion.index, columnas] = data_comparacion[[f'{col}_fin' for col in columnas]].values
-        self.logger.info("4. Terminando imputación de nulos de variables básicas con la descripción!!")
+        logger.info("4. Terminando imputación de nulos de variables básicas con la descripción!!")
         self.df_transformaciones.append(data_copia)
         return data_copia
 
     def imputacion_coordenadas_nulas_con_direccion(self, data):
 
         if data['latitud'].isnull().sum() == 0 and data['longitud'].isnull().sum() == 0:
-            self.logger.info("NO Hay valores nulos en coordenadas")
+            logger.info("NO Hay valores nulos en coordenadas")
             return data
 
         data_copia = data.copy()
@@ -333,6 +333,6 @@ class Datawrangling:
         indices = direcciones_procesadas_df.query("latitud.isna() and latitud_api.notna()").index
         data_copia.loc[indices, columnas_originales] = direcciones_procesadas_df.loc[indices, columnas_nuevas].values
 
-        self.logger.info("5. Terminando imputación de nulos de coordenadas con la descripción!!")
+        logger.info("5. Terminando imputación de nulos de coordenadas con la descripción!!")
         self.df_transformaciones.append(data_copia)
         return data_copia

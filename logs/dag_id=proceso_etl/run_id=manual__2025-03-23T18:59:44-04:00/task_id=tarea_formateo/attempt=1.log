@@ -1,0 +1,18 @@
+[2025-03-23T18:00:37.411-0500] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-23T18:00:37.420-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: proceso_etl.tarea_formateo manual__2025-03-23T18:59:44-04:00 [queued]>
+[2025-03-23T18:00:37.424-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: proceso_etl.tarea_formateo manual__2025-03-23T18:59:44-04:00 [queued]>
+[2025-03-23T18:00:37.424-0500] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-23T18:00:37.453-0500] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): tarea_formateo> on 2025-03-23 22:59:44+00:00
+[2025-03-23T18:00:37.460-0500] {standard_task_runner.py:72} INFO - Started process 125177 to run task
+[2025-03-23T18:00:37.462-0500] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'proceso_etl', 'tarea_formateo', 'manual__2025-03-23T18:59:44-04:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/dag_etl.py', '--cfg-path', '/tmp/tmptsjr1axj']
+[2025-03-23T18:00:37.463-0500] {standard_task_runner.py:105} INFO - Job 15: Subtask tarea_formateo
+[2025-03-23T18:00:37.508-0500] {task_command.py:467} INFO - Running <TaskInstance: proceso_etl.tarea_formateo manual__2025-03-23T18:59:44-04:00 [running]> on host luis-GF65
+[2025-03-23T18:00:37.567-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='proceso_etl' AIRFLOW_CTX_TASK_ID='tarea_formateo' AIRFLOW_CTX_EXECUTION_DATE='2025-03-23T22:59:44+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-23T18:59:44-04:00'
+[2025-03-23T18:00:37.567-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-23T18:00:37.692-0500] {formateo.py:27} INFO - Cargando 359 datos desde data/json/data_json_20250323_180008.json (local)
+[2025-03-23T18:00:37.751-0500] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-23T18:00:37.755-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-23T18:00:37.756-0500] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=proceso_etl, task_id=tarea_formateo, run_id=manual__2025-03-23T18:59:44-04:00, execution_date=20250323T225944, start_date=20250323T230037, end_date=20250323T230037
+[2025-03-23T18:00:37.994-0500] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-23T18:00:38.009-0500] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-23T18:00:38.088-0500] {local_task_job_runner.py:245} INFO - ::endgroup::

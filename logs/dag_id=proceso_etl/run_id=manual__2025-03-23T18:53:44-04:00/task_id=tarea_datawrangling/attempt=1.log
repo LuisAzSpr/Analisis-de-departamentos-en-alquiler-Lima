@@ -1,0 +1,85 @@
+[2025-03-23T18:00:41.726-0500] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-23T18:00:41.735-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: proceso_etl.tarea_datawrangling manual__2025-03-23T18:53:44-04:00 [queued]>
+[2025-03-23T18:00:41.740-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: proceso_etl.tarea_datawrangling manual__2025-03-23T18:53:44-04:00 [queued]>
+[2025-03-23T18:00:41.740-0500] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-23T18:00:41.847-0500] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): tarea_datawrangling> on 2025-03-23 22:53:44+00:00
+[2025-03-23T18:00:41.854-0500] {standard_task_runner.py:72} INFO - Started process 126035 to run task
+[2025-03-23T18:00:41.856-0500] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'proceso_etl', 'tarea_datawrangling', 'manual__2025-03-23T18:53:44-04:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/dag_etl.py', '--cfg-path', '/tmp/tmpgigql_g2']
+[2025-03-23T18:00:41.857-0500] {standard_task_runner.py:105} INFO - Job 16: Subtask tarea_datawrangling
+[2025-03-23T18:00:41.902-0500] {task_command.py:467} INFO - Running <TaskInstance: proceso_etl.tarea_datawrangling manual__2025-03-23T18:53:44-04:00 [running]> on host luis-GF65
+[2025-03-23T18:00:42.038-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='proceso_etl' AIRFLOW_CTX_TASK_ID='tarea_datawrangling' AIRFLOW_CTX_EXECUTION_DATE='2025-03-23T22:53:44+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-23T18:53:44-04:00'
+[2025-03-23T18:00:42.038-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-23T18:00:43.831-0500] {logging_mixin.py:190} INFO - [ERROR] Al leer el archivo 'data/csv/data_formateada_20250323_180033.csv' desde GCP: 403 GET https://storage.googleapis.com/download/storage/v1/b/us-central1-composer-dev-lu-620fcc1f-bucket/o/data%2Fcsv%2Fdata_formateada_20250323_180033.csv?alt=media: luisazspr@proyecto-alquiler-en-lima.iam.gserviceaccount.com does not have storage.objects.get access to the Google Cloud Storage object. Permission &#39;storage.objects.get&#39; denied on resource (or it may not exist).: ('Request failed with status code', 403, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.PARTIAL_CONTENT: 206>)
+[2025-03-23T18:00:43.831-0500] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/dags/dag_etl.py", line 94, in tarea_datawrangling
+    datawrangling_ruta = datawrangling.realizar_data_wrangling()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/tasks/data_wrangling.py", line 92, in realizar_data_wrangling
+    df_trans0 = self.formateo(df)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/tasks/data_wrangling.py", line 108, in formateo
+    data_copia = data.copy()
+AttributeError: 'NoneType' object has no attribute 'copy'
+[2025-03-23T18:00:43.844-0500] {taskinstance.py:1226} INFO - Marking task as UP_FOR_RETRY. dag_id=proceso_etl, task_id=tarea_datawrangling, run_id=manual__2025-03-23T18:53:44-04:00, execution_date=20250323T225344, start_date=20250323T230041, end_date=20250323T230043
+[2025-03-23T18:00:43.882-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-23T18:00:43.883-0500] {standard_task_runner.py:124} ERROR - Failed to execute job 16 for task tarea_datawrangling ('NoneType' object has no attribute 'copy'; 126035)
+Traceback (most recent call last):
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/dags/dag_etl.py", line 94, in tarea_datawrangling
+    datawrangling_ruta = datawrangling.realizar_data_wrangling()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/tasks/data_wrangling.py", line 92, in realizar_data_wrangling
+    df_trans0 = self.formateo(df)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/tasks/data_wrangling.py", line 108, in formateo
+    data_copia = data.copy()
+AttributeError: 'NoneType' object has no attribute 'copy'
+[2025-03-23T18:00:43.912-0500] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-03-23T18:00:43.926-0500] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-23T18:00:43.926-0500] {local_task_job_runner.py:245} INFO - ::endgroup::

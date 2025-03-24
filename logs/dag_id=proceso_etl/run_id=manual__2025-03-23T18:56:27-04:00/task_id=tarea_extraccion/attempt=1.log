@@ -1,0 +1,29 @@
+[2025-03-23T17:56:32.707-0500] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-23T17:56:32.715-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: proceso_etl.tarea_extraccion manual__2025-03-23T18:56:27-04:00 [queued]>
+[2025-03-23T17:56:32.719-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: proceso_etl.tarea_extraccion manual__2025-03-23T18:56:27-04:00 [queued]>
+[2025-03-23T17:56:32.719-0500] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-23T17:56:32.743-0500] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): tarea_extraccion> on 2025-03-23 22:56:27+00:00
+[2025-03-23T17:56:32.749-0500] {standard_task_runner.py:72} INFO - Started process 123851 to run task
+[2025-03-23T17:56:32.751-0500] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'proceso_etl', 'tarea_extraccion', 'manual__2025-03-23T18:56:27-04:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/dag_etl.py', '--cfg-path', '/tmp/tmpetkdmydo']
+[2025-03-23T17:56:32.753-0500] {standard_task_runner.py:105} INFO - Job 10: Subtask tarea_extraccion
+[2025-03-23T17:56:32.788-0500] {task_command.py:467} INFO - Running <TaskInstance: proceso_etl.tarea_extraccion manual__2025-03-23T18:56:27-04:00 [running]> on host luis-GF65
+[2025-03-23T17:56:32.849-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='proceso_etl' AIRFLOW_CTX_TASK_ID='tarea_extraccion' AIRFLOW_CTX_EXECUTION_DATE='2025-03-23T22:56:27+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-23T18:56:27-04:00'
+[2025-03-23T17:56:32.850-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-23T17:56:40.819-0500] {logging_mixin.py:190} INFO - Hay 231 archivos en el folder data_alquileres_lima/rawdata
+[2025-03-23T17:56:40.819-0500] {dag_etl.py:64} INFO - Descargando todos los archivos
+[2025-03-23T17:56:41.641-0500] {dag_etl.py:77} INFO - Descargado 1 de 231 archivos
+[2025-03-23T17:56:42.703-0500] {dag_etl.py:77} INFO - Descargado 2 de 231 archivos
+[2025-03-23T17:56:44.059-0500] {dag_etl.py:77} INFO - Descargado 3 de 231 archivos
+[2025-03-23T17:56:45.064-0500] {dag_etl.py:77} INFO - Descargado 4 de 231 archivos
+[2025-03-23T17:56:46.597-0500] {dag_etl.py:77} INFO - Descargado 5 de 231 archivos
+[2025-03-23T17:56:49.748-0500] {dag_etl.py:77} INFO - Descargado 6 de 231 archivos
+[2025-03-23T17:56:52.249-0500] {dag_etl.py:77} INFO - Descargado 7 de 231 archivos
+[2025-03-23T17:56:53.648-0500] {dag_etl.py:77} INFO - Descargado 8 de 231 archivos
+[2025-03-23T17:56:55.195-0500] {dag_etl.py:77} INFO - Descargado 9 de 231 archivos
+[2025-03-23T17:56:56.031-0500] {dag_etl.py:77} INFO - Descargado 10 de 231 archivos
+[2025-03-23T17:57:08.385-0500] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-23T17:57:08.388-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-23T17:57:08.388-0500] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=proceso_etl, task_id=tarea_extraccion, run_id=manual__2025-03-23T18:56:27-04:00, execution_date=20250323T225627, start_date=20250323T225632, end_date=20250323T225708
+[2025-03-23T17:57:08.438-0500] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-23T17:57:08.450-0500] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-23T17:57:08.458-0500] {local_task_job_runner.py:245} INFO - ::endgroup::

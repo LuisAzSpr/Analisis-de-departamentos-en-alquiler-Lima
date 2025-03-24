@@ -1,0 +1,110 @@
+[2025-03-23T19:35:46.717-0500] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-23T19:35:46.729-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: proceso_etl.carga_csv_a_bq manual__2025-03-23T20:32:33-04:00 [queued]>
+[2025-03-23T19:35:46.735-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: proceso_etl.carga_csv_a_bq manual__2025-03-23T20:32:33-04:00 [queued]>
+[2025-03-23T19:35:46.735-0500] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-23T19:35:46.758-0500] {taskinstance.py:2890} INFO - Executing <Task(GCSToBigQueryOperator): carga_csv_a_bq> on 2025-03-24 00:32:33+00:00
+[2025-03-23T19:35:46.768-0500] {standard_task_runner.py:72} INFO - Started process 87683 to run task
+[2025-03-23T19:35:46.771-0500] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'proceso_etl', 'carga_csv_a_bq', 'manual__2025-03-23T20:32:33-04:00', '--job-id', '36', '--raw', '--subdir', 'DAGS_FOLDER/dag_etl.py', '--cfg-path', '/tmp/tmpggq5lt95']
+[2025-03-23T19:35:46.773-0500] {standard_task_runner.py:105} INFO - Job 36: Subtask carga_csv_a_bq
+[2025-03-23T19:35:46.828-0500] {task_command.py:467} INFO - Running <TaskInstance: proceso_etl.carga_csv_a_bq manual__2025-03-23T20:32:33-04:00 [running]> on host luis-GF65
+[2025-03-23T19:35:46.897-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='proceso_etl' AIRFLOW_CTX_TASK_ID='carga_csv_a_bq' AIRFLOW_CTX_EXECUTION_DATE='2025-03-24T00:32:33+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-23T20:32:33-04:00'
+[2025-03-23T19:35:46.898-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-23T19:35:47.067-0500] {connection.py:277} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2025-03-23T19:35:47.067-0500] {base.py:84} INFO - Retrieving connection 'google_cloud_default'
+[2025-03-23T19:35:47.067-0500] {gcs_to_bigquery.py:387} INFO - Using existing BigQuery table for storing data...
+[2025-03-23T19:35:47.068-0500] {credentials_provider.py:409} INFO - Getting connection using `google.auth.default()` since no explicit credentials are provided.
+[2025-03-23T19:35:47.117-0500] {gcs_to_bigquery.py:391} INFO - Executing: {'load': {'autodetect': True, 'createDisposition': 'CREATE_IF_NEEDED', 'destinationTable': {'projectId': 'first-outlet-454113-e2', 'datasetId': 'alquiler_depas_lima', 'tableId': 'precios_depas_lima_actualizado'}, 'sourceFormat': 'CSV', 'sourceUris': ['gs://us-central1-composer-dev-lu-620fcc1f-bucket/data_alquileres_lima/csv/data_20250323_193539.csv'], 'writeDisposition': 'WRITE_TRUNCATE', 'ignoreUnknownValues': True, 'skipLeadingRows': 1, 'fieldDelimiter': ',', 'quote': None, 'allowQuotedNewlines': False, 'encoding': 'UTF-8', 'allowJaggedRows': True}}
+[2025-03-23T19:35:47.118-0500] {bigquery.py:1344} INFO - Inserting job airflow_proceso_etl_carga_csv_a_bq_2025_03_24T00_32_33_00_00_8773744fb79abaccd66ba29da52ae544
+[2025-03-23T19:35:49.788-0500] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/providers/google/cloud/transfers/gcs_to_bigquery.py", line 392, in execute
+    job: BigQueryJob | UnknownJob = self._submit_job(self.hook, job_id)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/providers/google/cloud/transfers/gcs_to_bigquery.py", line 310, in _submit_job
+    return hook.insert_job(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/providers/google/common/hooks/base_google.py", line 554, in inner_wrapper
+    return func(self, *args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/providers/google/cloud/hooks/bigquery.py", line 1347, in insert_job
+    job_api_repr._begin()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/cloud/bigquery/job/base.py", line 746, in _begin
+    api_response = client._call_api(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/cloud/bigquery/client.py", line 843, in _call_api
+    return call()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/cloud/_http/__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/proyecto-alquiler-en-lima/jobs?prettyPrint=false: Access Denied: Dataset first-outlet-454113-e2:alquiler_depas_lima: Permission bigquery.tables.create denied on dataset first-outlet-454113-e2:alquiler_depas_lima (or it may not exist).
+[2025-03-23T19:35:49.805-0500] {taskinstance.py:1226} INFO - Marking task as UP_FOR_RETRY. dag_id=proceso_etl, task_id=carga_csv_a_bq, run_id=manual__2025-03-23T20:32:33-04:00, execution_date=20250324T003233, start_date=20250324T003546, end_date=20250324T003549
+[2025-03-23T19:35:49.841-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-23T19:35:49.841-0500] {standard_task_runner.py:124} ERROR - Failed to execute job 36 for task carga_csv_a_bq (403 POST https://bigquery.googleapis.com/bigquery/v2/projects/proyecto-alquiler-en-lima/jobs?prettyPrint=false: Access Denied: Dataset first-outlet-454113-e2:alquiler_depas_lima: Permission bigquery.tables.create denied on dataset first-outlet-454113-e2:alquiler_depas_lima (or it may not exist).; 87683)
+Traceback (most recent call last):
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/providers/google/cloud/transfers/gcs_to_bigquery.py", line 392, in execute
+    job: BigQueryJob | UnknownJob = self._submit_job(self.hook, job_id)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/providers/google/cloud/transfers/gcs_to_bigquery.py", line 310, in _submit_job
+    return hook.insert_job(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/providers/google/common/hooks/base_google.py", line 554, in inner_wrapper
+    return func(self, *args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/providers/google/cloud/hooks/bigquery.py", line 1347, in insert_job
+    job_api_repr._begin()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/cloud/bigquery/job/base.py", line 746, in _begin
+    api_response = client._call_api(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/cloud/bigquery/client.py", line 843, in _call_api
+    return call()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/google/cloud/_http/__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 POST https://bigquery.googleapis.com/bigquery/v2/projects/proyecto-alquiler-en-lima/jobs?prettyPrint=false: Access Denied: Dataset first-outlet-454113-e2:alquiler_depas_lima: Permission bigquery.tables.create denied on dataset first-outlet-454113-e2:alquiler_depas_lima (or it may not exist).
+[2025-03-23T19:35:49.870-0500] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-03-23T19:35:49.888-0500] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-23T19:35:49.889-0500] {local_task_job_runner.py:245} INFO - ::endgroup::

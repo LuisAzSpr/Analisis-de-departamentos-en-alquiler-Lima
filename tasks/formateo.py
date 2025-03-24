@@ -8,55 +8,36 @@ from utils.configurar_logger import configurar_logger
 from utils.manejador_bucket_gcp import leer_archivo_desde_gcp
 from datetime import datetime
 from utils.configurar_logger import configurar_logger
+import json
 
-logger = configurar_logger("../logs/formateo.log")
+logger = configurar_logger("logs/logs.log")
 
 
 class Formateo():
-    def __init__(self,
-                 bucket_name='us-central1-composer-dev-lu-620fcc1f-bucket',
-                 ruta_lectura=''):
+    def __init__(self,ruta_lectura=''):
         self.timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.bucket_name = bucket_name
         self.ruta_lectura = ruta_lectura
         self.df_transformaciones = []
-        self.logger = configurar_logger("../logs/formateo.log")
 
     def realizar_formateo(self):
-        data_json = self.extraer_datos_de_folder_gcp(self.bucket_name,self.ruta_lectura)
 
-        data = self.convertir_a_dataframe(data_json)
-        data_preformato = self.pre_formateo(data)
-        data_formateada = self.formateo(data_preformato)
+        with open(self.ruta_lectura, 'r', encoding='utf-8') as f:
+            data_json = json.load(f)
+            logger.info(f"Cargando {len(data_json)} datos desde {self.ruta_lectura} (local)")
 
-        ruta_local, ruta_gcp = "../csv/data_formateada.csv", f"data/csv/data_formateada_{self.timestamp_str}.csv"
-        data_formateada.to_csv(ruta_local,index=False)
-        upload_cs_file(self.bucket_name,ruta_local,ruta_gcp)
-
-        return ruta_gcp
-
-    def extraer_datos_de_folder_gcp(self, bucket_name, folder_name):
-        archivos = list_cs_files_in_folder(bucket_name, folder_name)
-        if not archivos or len(archivos) == 0:
-            print(f"No hay archivos en la carpeta '{folder_name}'")
+        if not data_json or len(data_json) == 0:
+            logger.error("No hay datos disponibles")
             return None
 
-        data_completa = []
-        logger.info("Descargando todos los archivos")
-        for i,archivo in enumerate(archivos):
-            if not archivo.endswith(".json"):
-                continue
-            data = leer_archivo_desde_gcp(bucket_name, archivo)
-            if isinstance(data, list):
-                data_completa.extend(data)
-            elif isinstance(data, dict):
-                data_completa.append(data)
-            else:
-                print(f"Formato de datos no reconocido en el archivo {archivo}")
-            if i//10==0:
-                logger.info(f"Descargado {i+1} de {len(archivos)} archivos")
+        data = self.convertir_a_dataframe(data_json)
+        data_pre_formato = self.pre_formateo(data)
+        data_formateada = self.formateo(data_pre_formato)
 
-        return data_completa
+        ruta_local = f"data/csv/data_formateada_{self.timestamp_str}.csv"
+        data_formateada.to_csv(ruta_local,index=False)
+
+        return ruta_local
+
 
     def convertir_a_dataframe(self, data):
         variables_comunes = reduce(
@@ -91,7 +72,6 @@ class Formateo():
             lon_f = float(coord[1].replace(",", "."))
             coordenadas_f.append(np.array([lat_f, lon_f]))
         return np.array(coordenadas_f)
-
 
     def pre_formateo(self, df: pd.DataFrame) -> pd.DataFrame:
         df_copia = df.copy()
@@ -155,14 +135,13 @@ class Formateo():
                 valor_f = match[0] if type(match[0]) is not tuple else reduce(lambda x, y: x + y, match[0])
                 valores_f.append(int(valor_f))
             except IndexError:
-                self.logger.warning(f"Formato incorrecto en la columna '{columna}' para el valor '{valor.lower()}'")
+                logger.warning(f"Formato incorrecto en la columna '{columna}' para el valor '{valor.lower()}'")
                 valores_f.append(None)
             except ValueError:
-                self.logger.warning(f" {valor} no se puede convertir a entero en '{columna}'")
+                logger.warning(f" {valor} no se puede convertir a entero en '{columna}'")
                 valores_f.append(None)
 
         return valores_f
-
 
     def formateo(self, df: pd.DataFrame) -> pd.DataFrame:
         '''

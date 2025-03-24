@@ -1,0 +1,78 @@
+[2025-03-23T17:53:50.465-0500] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-23T17:53:50.472-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: proceso_etl.tarea_extraccion manual__2025-03-23T18:53:44-04:00 [queued]>
+[2025-03-23T17:53:50.477-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: proceso_etl.tarea_extraccion manual__2025-03-23T18:53:44-04:00 [queued]>
+[2025-03-23T17:53:50.477-0500] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-23T17:53:50.497-0500] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): tarea_extraccion> on 2025-03-23 22:53:44+00:00
+[2025-03-23T17:53:50.503-0500] {standard_task_runner.py:72} INFO - Started process 123433 to run task
+[2025-03-23T17:53:50.505-0500] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'proceso_etl', 'tarea_extraccion', 'manual__2025-03-23T18:53:44-04:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/dag_etl.py', '--cfg-path', '/tmp/tmpoeb_k31e']
+[2025-03-23T17:53:50.506-0500] {standard_task_runner.py:105} INFO - Job 9: Subtask tarea_extraccion
+[2025-03-23T17:53:50.543-0500] {task_command.py:467} INFO - Running <TaskInstance: proceso_etl.tarea_extraccion manual__2025-03-23T18:53:44-04:00 [running]> on host luis-GF65
+[2025-03-23T17:53:50.605-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='proceso_etl' AIRFLOW_CTX_TASK_ID='tarea_extraccion' AIRFLOW_CTX_EXECUTION_DATE='2025-03-23T22:53:44+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-23T18:53:44-04:00'
+[2025-03-23T17:53:50.606-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-23T17:54:04.660-0500] {logging_mixin.py:190} INFO - Hay 231 archivos en el folder data_alquileres_lima/rawdata
+[2025-03-23T17:54:04.660-0500] {dag_etl.py:64} INFO - Descargando todos los archivos
+[2025-03-23T17:54:04.661-0500] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/dags/dag_etl.py", line 66, in tarea_extraccion
+    for i,archivo in enumerate(archivos)[:20]:
+TypeError: 'enumerate' object is not subscriptable
+[2025-03-23T17:54:04.665-0500] {taskinstance.py:1226} INFO - Marking task as UP_FOR_RETRY. dag_id=proceso_etl, task_id=tarea_extraccion, run_id=manual__2025-03-23T18:53:44-04:00, execution_date=20250323T225344, start_date=20250323T225350, end_date=20250323T225404
+[2025-03-23T17:54:04.706-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-23T17:54:04.706-0500] {standard_task_runner.py:124} ERROR - Failed to execute job 9 for task tarea_extraccion ('enumerate' object is not subscriptable; 123433)
+Traceback (most recent call last):
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/.venv/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/dags/dag_etl.py", line 66, in tarea_extraccion
+    for i,archivo in enumerate(archivos)[:20]:
+TypeError: 'enumerate' object is not subscriptable
+[2025-03-23T17:54:04.732-0500] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2025-03-23T17:54:04.741-0500] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-23T17:54:04.741-0500] {local_task_job_runner.py:245} INFO - ::endgroup::

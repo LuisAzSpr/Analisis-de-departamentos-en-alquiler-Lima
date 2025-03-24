@@ -1,0 +1,22 @@
+[2025-03-23T20:27:21.777-0500] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-23T20:27:21.796-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: proceso_etl.carga_csv_a_bq manual__2025-03-23T21:23:34-04:00 [queued]>
+[2025-03-23T20:27:21.804-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: proceso_etl.carga_csv_a_bq manual__2025-03-23T21:23:34-04:00 [queued]>
+[2025-03-23T20:27:21.805-0500] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-23T20:27:21.831-0500] {taskinstance.py:2890} INFO - Executing <Task(GCSToBigQueryOperator): carga_csv_a_bq> on 2025-03-24 01:23:34+00:00
+[2025-03-23T20:27:21.843-0500] {standard_task_runner.py:72} INFO - Started process 101118 to run task
+[2025-03-23T20:27:21.847-0500] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'proceso_etl', 'carga_csv_a_bq', 'manual__2025-03-23T21:23:34-04:00', '--job-id', '41', '--raw', '--subdir', 'DAGS_FOLDER/dag_etl.py', '--cfg-path', '/tmp/tmp81t9_okj']
+[2025-03-23T20:27:21.849-0500] {standard_task_runner.py:105} INFO - Job 41: Subtask carga_csv_a_bq
+[2025-03-23T20:27:21.889-0500] {task_command.py:467} INFO - Running <TaskInstance: proceso_etl.carga_csv_a_bq manual__2025-03-23T21:23:34-04:00 [running]> on host luis-GF65
+[2025-03-23T20:27:21.980-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='proceso_etl' AIRFLOW_CTX_TASK_ID='carga_csv_a_bq' AIRFLOW_CTX_EXECUTION_DATE='2025-03-24T01:23:34+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-23T21:23:34-04:00'
+[2025-03-23T20:27:21.980-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-23T20:27:22.202-0500] {connection.py:277} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2025-03-23T20:27:22.203-0500] {base.py:84} INFO - Retrieving connection 'google_cloud_default'
+[2025-03-23T20:27:22.203-0500] {gcs_to_bigquery.py:387} INFO - Using existing BigQuery table for storing data...
+[2025-03-23T20:27:22.204-0500] {credentials_provider.py:409} INFO - Getting connection using `google.auth.default()` since no explicit credentials are provided.
+[2025-03-23T20:27:22.264-0500] {gcs_to_bigquery.py:391} INFO - Executing: {'load': {'autodetect': True, 'createDisposition': 'CREATE_IF_NEEDED', 'destinationTable': {'projectId': 'proyecto-alquiler-en-lima', 'datasetId': 'data_departamentos', 'tableId': 'data_lima'}, 'sourceFormat': 'CSV', 'sourceUris': ['gs://bucket-proyectos/data_alquileres_lima/csv/data_20250323_202715.csv'], 'writeDisposition': 'WRITE_TRUNCATE', 'ignoreUnknownValues': True, 'skipLeadingRows': 1, 'fieldDelimiter': ',', 'quote': None, 'allowQuotedNewlines': False, 'encoding': 'UTF-8', 'allowJaggedRows': True}}
+[2025-03-23T20:27:22.265-0500] {bigquery.py:1344} INFO - Inserting job airflow_proceso_etl_carga_csv_a_bq_2025_03_24T01_23_34_00_00_5869329e7dddff56ceb796d5c3b4a216
+[2025-03-23T20:27:25.797-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-23T20:27:25.798-0500] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=proceso_etl, task_id=carga_csv_a_bq, run_id=manual__2025-03-23T21:23:34-04:00, execution_date=20250324T012334, start_date=20250324T012721, end_date=20250324T012725
+[2025-03-23T20:27:25.873-0500] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-23T20:27:25.883-0500] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-03-23T20:27:25.884-0500] {local_task_job_runner.py:245} INFO - ::endgroup::

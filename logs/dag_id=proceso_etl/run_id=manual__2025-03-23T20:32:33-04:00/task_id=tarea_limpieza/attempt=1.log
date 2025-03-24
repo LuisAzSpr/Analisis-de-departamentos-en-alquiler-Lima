@@ -1,0 +1,34 @@
+[2025-03-23T19:35:39.370-0500] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-23T19:35:39.382-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: proceso_etl.tarea_limpieza manual__2025-03-23T20:32:33-04:00 [queued]>
+[2025-03-23T19:35:39.390-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: proceso_etl.tarea_limpieza manual__2025-03-23T20:32:33-04:00 [queued]>
+[2025-03-23T19:35:39.390-0500] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-23T19:35:39.410-0500] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): tarea_limpieza> on 2025-03-24 00:32:33+00:00
+[2025-03-23T19:35:39.418-0500] {standard_task_runner.py:72} INFO - Started process 87575 to run task
+[2025-03-23T19:35:39.421-0500] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'proceso_etl', 'tarea_limpieza', 'manual__2025-03-23T20:32:33-04:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/dag_etl.py', '--cfg-path', '/tmp/tmpcgufum_h']
+[2025-03-23T19:35:39.423-0500] {standard_task_runner.py:105} INFO - Job 35: Subtask tarea_limpieza
+[2025-03-23T19:35:39.461-0500] {task_command.py:467} INFO - Running <TaskInstance: proceso_etl.tarea_limpieza manual__2025-03-23T20:32:33-04:00 [running]> on host luis-GF65
+[2025-03-23T19:35:39.532-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='proceso_etl' AIRFLOW_CTX_TASK_ID='tarea_limpieza' AIRFLOW_CTX_EXECUTION_DATE='2025-03-24T00:32:33+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-23T20:32:33-04:00'
+[2025-03-23T19:35:39.533-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-23T19:35:39.723-0500] {limpieza.py:55} INFO - 1. Terminando pre-limpieza antes del análisis !!
+[2025-03-23T19:35:39.771-0500] {limpieza.py:76} INFO - 2. Terminando corrección de coordenadas y distrito !!
+[2025-03-23T19:35:39.779-0500] {limpieza.py:94} INFO - Relación en distrito barranco: 2.29
+[2025-03-23T19:35:39.779-0500] {limpieza.py:98} INFO - Relación global entre preciosxm2: 2.29
+[2025-03-23T19:35:39.781-0500] {limpieza.py:105} INFO - 3. Terminando corrección de precios extremadamente bajos !!
+[2025-03-23T19:35:39.792-0500] {logging_mixin.py:190} WARNING - /home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/tasks/limpieza.py:118 SettingWithCopyWarning:
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+[2025-03-23T19:35:39.802-0500] {limpieza.py:132} INFO - 4. Terminando tratamiento de duplicados !!
+[2025-03-23T19:35:40.587-0500] {limpieza.py:160} INFO - MAPE RFR promedio: 0.20719171091598104
+[2025-03-23T19:35:40.587-0500] {limpieza.py:161} INFO - MAPE imputación media promedio: 0.6086427070047062
+[2025-03-23T19:35:40.593-0500] {limpieza.py:163} INFO - 5. Terminando tratamiento de nulos en área !!
+[2025-03-23T19:35:40.594-0500] {logging_mixin.py:190} INFO - No existen valores nulos en antiguedad
+[2025-03-23T19:35:40.607-0500] {logging_mixin.py:190} WARNING - /home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/tasks/limpieza.py:198 FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+[2025-03-23T19:35:40.632-0500] {limpieza.py:215} INFO - 7. Terminando última limpieza antes de EDA !!
+[2025-03-23T19:35:42.498-0500] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-23T19:35:42.502-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-23T19:35:42.502-0500] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=proceso_etl, task_id=tarea_limpieza, run_id=manual__2025-03-23T20:32:33-04:00, execution_date=20250324T003233, start_date=20250324T003539, end_date=20250324T003542
+[2025-03-23T19:35:42.561-0500] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-23T19:35:42.576-0500] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-23T19:35:42.678-0500] {local_task_job_runner.py:245} INFO - ::endgroup::

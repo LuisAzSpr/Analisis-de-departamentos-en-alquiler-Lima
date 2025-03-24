@@ -13,18 +13,19 @@ from utils.manejador_bucket_gcp import leer_archivo_desde_gcp
 from utils.manejador_bucket_gcp import upload_cs_file
 
 
+logger = configurar_logger("logs/logs.log")
+
+
 class Limpieza:
-    def __init__(self,bucket_name='us-central1-composer-dev-lu-620fcc1f-bucket',ruta_lectura=''):
+    def __init__(self,bucket_name='', ruta_lectura=''):
         self.timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.bucket_name = bucket_name
         self.ruta_lectura = ruta_lectura
-
-        self.logger = configurar_logger("../logs/datawrangling.log")
         self.df_transformaciones = []
 
     def realizar_limpieza(self):
 
-        df = leer_archivo_desde_gcp(self.bucket_name,self.ruta_lectura)
+        df = pd.read_csv(self.ruta_lectura)
 
         df_trans1 = self.pre_limpieza_analisis(df)
         df_trans2 = self.correccion_de_coordenadas_y_distrito(df_trans1)
@@ -34,10 +35,11 @@ class Limpieza:
         df_trans6 = self.tratamiento_de_nulos_en_antiguedad(df_trans5)
         df_trans7 = self.ultima_limpieza_antes_de_EDA(df_trans6)
 
-        ruta_local, ruta_gcp = "../csv/data_limpieza.csv", f"data/csv/data_limpieza_{self.timestamp_str}.csv"
-        df_trans7.to_csv(ruta_local,index=False)
+        ruta_local = f"data/csv/data_limpieza_{self.timestamp_str}.csv"
+        ruta_gcp = f"data_alquileres_lima/csv/data_{self.timestamp_str}.csv"
 
-        upload_cs_file(self.bucket_name,ruta_local,ruta_gcp)
+        df_trans7.to_csv(ruta_local, index=False)
+        upload_cs_file(self.bucket_name, ruta_local, ruta_gcp)
 
         return ruta_gcp
 
@@ -49,8 +51,8 @@ class Limpieza:
         data_copia.dropna(subset=['precio', 'dormitorios', 'banos', 'fecha_publicacion', 'distrito'], inplace=True)
         porcentaje_eliminado = (data.shape[0] - data_copia.shape[0]) / data.shape[0]
         if porcentaje_eliminado > 0.1:
-            self.logger.error(f"El % de nulos eliminados es {porcentaje_eliminado:.2%}")
-        self.logger.info("1. Terminando pre-limpieza antes del análisis !!")
+            logger.error(f"El % de nulos eliminados es {porcentaje_eliminado:.2%}")
+        logger.info("1. Terminando pre-limpieza antes del análisis !!")
         self.df_transformaciones.append(data_copia)
         return data_copia
 
@@ -69,9 +71,9 @@ class Limpieza:
         y = data_copia.loc[X_coords.index,'distrito']
         knn = KNeighborsClassifier(n_neighbors=10, metric='haversine', n_jobs=6)
         knn.fit(X_coords, y)
-        data_copia.loc[X_coords.index,'distrito'] = knn.predict(X_coords)
+        data_copia.loc[X_coords.index, 'distrito'] = knn.predict(X_coords)
 
-        self.logger.info("2. Terminando corrección de coordenadas y distrito !!")
+        logger.info("2. Terminando corrección de coordenadas y distrito !!")
         self.df_transformaciones.append(data_copia)
         return data_copia
 
@@ -89,18 +91,18 @@ class Limpieza:
             mediana_precioxm2_out = data_distrito_out['precioxm2'].median()
             relacion = np.round(mediana_precioxm2 / mediana_precioxm2_out if mediana_precioxm2_out else 0, 2)
             relaciones.append(relacion)
-            self.logger.info(f"Relación en distrito {distrito}: {relacion}")
+            logger.info(f"Relación en distrito {distrito}: {relacion}")
             indices_out += data_distrito_out.index.tolist()
 
         relaciones_m = (np.mean(relaciones) + np.median(relaciones)) / 2
-        self.logger.info(f"Relación global entre preciosxm2: {relaciones_m}")
+        logger.info(f"Relación global entre preciosxm2: {relaciones_m}")
         if relaciones_m < 2:
-            self.logger.error("La relación entre los preciosxm2 no indica que los datos con precioxm2 muy bajos estén en dólares.")
+            logger.error("La relación entre los preciosxm2 no indica que los datos con precioxm2 muy bajos estén en dólares.")
         data_copia.loc[indices_out, 'precio'] *= 3.7
 
         precioxm2 = data_copia['precio'] / data_copia['area']
         data_copia.drop(index=precioxm2[precioxm2 < 10].index, inplace=True)
-        self.logger.info("3. Terminando corrección de precios extremadamente bajos !!")
+        logger.info("3. Terminando corrección de precios extremadamente bajos !!")
         self.df_transformaciones.append(data_copia)
         return data_copia
 
@@ -127,7 +129,7 @@ class Limpieza:
         data_copia.update(data_preprocessing_rep)
         data_copia.drop_duplicates(subset=columnas, keep='first', inplace=True)
         data_copia.drop_duplicates(subset=['area', 'dormitorios', 'banos', 'descripcion'], keep='first', inplace=True)
-        self.logger.info("4. Terminando tratamiento de duplicados !!")
+        logger.info("4. Terminando tratamiento de duplicados !!")
         self.df_transformaciones.append(data_copia)
         return data_copia
 
@@ -155,10 +157,10 @@ class Limpieza:
             mapes_rfr.append(mean_absolute_percentage_error(y_test, y_pred))
             mapes_mean.append(mean_absolute_percentage_error(y_test, [np.mean(y_train)] * len(y_test)))
 
-        self.logger.info(f"MAPE RFR promedio: {np.mean(np.sort(mapes_rfr)[1:-1])}")
-        self.logger.info(f"MAPE imputación media promedio: {np.mean(np.sort(mapes_mean)[1:-1])}")
+        logger.info(f"MAPE RFR promedio: {np.mean(np.sort(mapes_rfr)[1:-1])}")
+        logger.info(f"MAPE imputación media promedio: {np.mean(np.sort(mapes_mean)[1:-1])}")
         data_copia.loc[is_na.index, 'area'] = rfr.predict(is_na[['banos', 'dormitorios', 'antiguedad', 'longitud', 'latitud']])
-        self.logger.info("5. Terminando tratamiento de nulos en área !!")
+        logger.info("5. Terminando tratamiento de nulos en área !!")
         self.df_transformaciones.append(data_copia)
         return data_copia
 
@@ -178,7 +180,7 @@ class Limpieza:
                                                       "desconocido",
                                                       data_copia['antiguedad_categoria'])
         data_copia.drop('antiguedad', axis=1, inplace=True)
-        self.logger.info("6. Terminando tratamiento de nulos en antigüedad !!")
+        logger.info("6. Terminando tratamiento de nulos en antigüedad !!")
         self.df_transformaciones.append(data_copia)
         return data_copia
 
@@ -210,7 +212,7 @@ class Limpieza:
             outliers = data_copia.query("distrito == @dist and precioxm2 > @max_val")
             data_copia.drop(index=outliers.index, inplace=True)
 
-        self.logger.info("7. Terminando última limpieza antes de EDA !!")
+        logger.info("7. Terminando última limpieza antes de EDA !!")
         self.df_transformaciones.append(data_copia)
 
         return data_copia

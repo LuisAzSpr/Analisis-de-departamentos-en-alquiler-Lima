@@ -1,0 +1,330 @@
+[2025-03-23T20:24:14.716-0500] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-23T20:24:14.735-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: proceso_etl.tarea_datawrangling manual__2025-03-23T21:23:34-04:00 [queued]>
+[2025-03-23T20:24:14.747-0500] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: proceso_etl.tarea_datawrangling manual__2025-03-23T21:23:34-04:00 [queued]>
+[2025-03-23T20:24:14.747-0500] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-23T20:24:14.771-0500] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): tarea_datawrangling> on 2025-03-24 01:23:34+00:00
+[2025-03-23T20:24:14.780-0500] {standard_task_runner.py:72} INFO - Started process 100284 to run task
+[2025-03-23T20:24:14.783-0500] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'proceso_etl', 'tarea_datawrangling', 'manual__2025-03-23T21:23:34-04:00', '--job-id', '39', '--raw', '--subdir', 'DAGS_FOLDER/dag_etl.py', '--cfg-path', '/tmp/tmp6p6ctqyt']
+[2025-03-23T20:24:14.785-0500] {standard_task_runner.py:105} INFO - Job 39: Subtask tarea_datawrangling
+[2025-03-23T20:24:14.830-0500] {task_command.py:467} INFO - Running <TaskInstance: proceso_etl.tarea_datawrangling manual__2025-03-23T21:23:34-04:00 [running]> on host luis-GF65
+[2025-03-23T20:24:14.916-0500] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='proceso_etl' AIRFLOW_CTX_TASK_ID='tarea_datawrangling' AIRFLOW_CTX_EXECUTION_DATE='2025-03-24T01:23:34+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-23T21:23:34-04:00'
+[2025-03-23T20:24:14.917-0500] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-23T20:24:15.107-0500] {data_wrangling.py:149} INFO - 1. Terminando formateo!!
+[2025-03-23T20:24:29.238-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:24:30.944-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:24:30.960-0500] {data_wrangling.py:186} ERROR - Los clasificados como 'venta' no son considerablemente más caros que los de alquiler. Verificar información
+[2025-03-23T20:24:30.960-0500] {data_wrangling.py:187} INFO - Los clasificados como 'venta' cuestan 1.0 veces más que los de alquiler
+[2025-03-23T20:24:30.962-0500] {data_wrangling.py:199} INFO - 2. Terminando clasificación de propiedades con data inconsistente!!
+[2025-03-23T20:24:32.541-0500] {geocode.py:29} INFO - {'id': 3, 'direccion': 'Av. el Sol Oeste 203 - 504, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:32.559-0500] {geocode.py:29} INFO - {'id': 4, 'direccion': 'Av. República de Panamá 330, Barranco 15049, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:32.564-0500] {geocode.py:29} INFO - {'id': 8, 'direccion': 'Av. Almte. Miguel Grau 1118, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:32.747-0500] {geocode.py:29} INFO - {'id': 6, 'direccion': 'Edificio El Sol 450, Av. el Sol Oeste 448, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:32.748-0500] {geocode.py:29} INFO - {'id': 0, 'direccion': 'Ca. Enrique Barrón 280, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:32.960-0500] {geocode.py:29} INFO - {'id': 2, 'direccion': 'Jr. Tumbes 306, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:34.524-0500] {geocode.py:29} INFO - {'id': 11, 'direccion': 'Augusto Tamayo Vargas 299, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:34.618-0500] {geocode.py:29} INFO - {'id': 9, 'direccion': 'Av. República de Panamá 3, Barranco 15049, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:36.162-0500] {geocode.py:29} INFO - {'id': 10, 'direccion': 'Auxiliar Av. Pedro de Osma 315, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:38.046-0500] {geocode.py:29} INFO - {'id': 17, 'direccion': 'Av. Almte. Miguel Grau 1430, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:38.106-0500] {geocode.py:29} INFO - {'id': 16, 'direccion': 'int. 107, Av. San Martín 153, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:38.682-0500] {geocode.py:29} INFO - {'id': 15, 'direccion': 'Av. el Sol 161, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:38.697-0500] {geocode.py:29} INFO - {'id': 13, 'direccion': 'Av. Almte. Miguel Grau 1540, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:39.053-0500] {geocode.py:29} INFO - {'id': 12, 'direccion': 'Parque Alto 128, Lima 15049, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:41.080-0500] {geocode.py:29} INFO - {'id': 19, 'direccion': 'Jr. Tumbes 318, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:41.092-0500] {geocode.py:29} INFO - {'id': 22, 'direccion': 'Av. Almte. Miguel Grau 1540, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:41.124-0500] {geocode.py:29} INFO - {'id': 21, 'direccion': '15063, Jirón Fedelli, Barranco 15063, Peru', 'precision': 'GEOMETRIC_CENTER', 'type': 'electrician'}
+[2025-03-23T20:24:41.252-0500] {geocode.py:29} INFO - {'id': 20, 'direccion': 'Av. Chorrillos 162, Chorrillos 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:42.482-0500] {geocode.py:29} INFO - {'id': 14, 'direccion': 'Av. Almte. Miguel Grau 1554, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:43.187-0500] {geocode.py:29} INFO - {'id': 24, 'direccion': 'Av. San Martín 512, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:43.698-0500] {geocode.py:29} INFO - {'id': 18, 'direccion': 'Ca. las Magnolias 103, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:44.327-0500] {geocode.py:29} INFO - {'id': 27, 'direccion': 'Felipe Sassone 183, Barranco 15047, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:44.853-0500] {geocode.py:29} INFO - {'id': 26, 'direccion': 'Ca. Enrique Barrón 710, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:45.066-0500] {geocode.py:29} INFO - {'id': 29, 'direccion': 'Jr. García y García 700, Barranco 15049, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:45.944-0500] {geocode.py:29} INFO - {'id': 23, 'direccion': 'Felipe Sassone 200, Barranco 15047, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:46.047-0500] {geocode.py:29} INFO - {'id': 32, 'direccion': 'Av. el Sol Este 450, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:46.832-0500] {geocode.py:29} INFO - {'id': 33, 'direccion': 'Av. el Sol Este 176, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:47.477-0500] {geocode.py:29} INFO - {'id': 35, 'direccion': 'Av. Almte. Miguel Grau 1350, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:48.142-0500] {geocode.py:29} INFO - {'id': 37, 'direccion': 'Av. Almte. Miguel Grau 1540, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:48.142-0500] {geocode.py:29} INFO - {'id': 25, 'direccion': 'WXJC+H72, Jr. Sáenz Peña, La Victoria 15033, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:48.466-0500] {geocode.py:29} INFO - {'id': 34, 'direccion': 'Av. el Sol Este 116, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:48.624-0500] {geocode.py:29} INFO - {'id': 38, 'direccion': 'Av. el Sol 161, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:50.513-0500] {geocode.py:29} INFO - {'id': 39, 'direccion': 'Calle Alcanfores 1262, Lima 15074, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:24:50.764-0500] {geocode.py:29} INFO - {'id': 40, 'direccion': 'Av. República de Panamá 330, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:50.792-0500] {geocode.py:29} INFO - {'id': 42, 'direccion': 'Jr.Batalla De Junin 249, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:24:50.888-0500] {geocode.py:29} INFO - {'id': 36, 'direccion': 'Av. el Sol Este 150, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:51.191-0500] {geocode.py:29} INFO - {'id': 41, 'direccion': 'Av. el Sol Oeste 145, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:51.873-0500] {geocode.py:29} INFO - {'id': 44, 'direccion': 'Lt-12, Jr. Tumbes mz 2c, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'cafe'}
+[2025-03-23T20:24:53.102-0500] {geocode.py:29} INFO - {'id': 47, 'direccion': 'Jirón Las Mimosas 263, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:54.036-0500] {geocode.py:29} INFO - {'id': 46, 'direccion': 'Jirón Juan Fanning 137, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:54.067-0500] {geocode.py:29} INFO - {'id': 43, 'direccion': 'Jr. Tacna 490, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:54.181-0500] {geocode.py:29} INFO - {'id': 45, 'direccion': 'Parque Gonzáles Prada 215, Lima 15047, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:54.349-0500] {geocode.py:29} INFO - {'id': 50, 'direccion': 'Av. Pedro de Osma 305, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:54.386-0500] {geocode.py:29} INFO - {'id': 51, 'direccion': 'Av. Almte. Miguel Grau 1350, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:55.393-0500] {geocode.py:29} INFO - {'id': 53, 'direccion': 'Av. Almte. Miguel Grau 1510, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:55.414-0500] {geocode.py:29} INFO - {'id': 54, 'direccion': 'Av. el Sol 196, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:55.717-0500] {geocode.py:29} INFO - {'id': 56, 'direccion': 'Jr. Maynas 145, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:24:55.728-0500] {geocode.py:29} INFO - {'id': 57, 'direccion': '28 De Julio 438, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:24:55.790-0500] {geocode.py:29} INFO - {'id': 55, 'direccion': 'Jirón Juan Fanning 109, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:56.792-0500] {geocode.py:29} INFO - {'id': 59, 'direccion': 'Av. República de Panamá 225, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:56.804-0500] {geocode.py:29} INFO - {'id': 58, 'direccion': 'Av. República de Panamá 225, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:58.808-0500] {geocode.py:29} INFO - {'id': 49, 'direccion': 'Jirón Juan Fanning 100, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:24:58.910-0500] {geocode.py:29} INFO - {'id': 61, 'direccion': 'Pedro de Osma 307, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:59.005-0500] {geocode.py:29} INFO - {'id': 62, 'direccion': 'Jiron Comandante Juan Fanning 190, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:24:59.063-0500] {geocode.py:29} INFO - {'id': 60, 'direccion': 'VX9G+PHX, Av. Reducto, Miraflores 15074, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:24:59.102-0500] {geocode.py:29} INFO - {'id': 64, 'direccion': 'Lt-12, Jr. Tumbes mz 2c, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'cafe'}
+[2025-03-23T20:25:01.751-0500] {geocode.py:29} INFO - {'id': 69, 'direccion': 'Jirón Tejadita 391-395, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:01.759-0500] {geocode.py:29} INFO - {'id': 70, 'direccion': 'Av. Pedro de Osma 305, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:01.952-0500] {geocode.py:29} INFO - {'id': 67, 'direccion': 'El Sol Este 546, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:03.195-0500] {geocode.py:29} INFO - {'id': 65, 'direccion': 'Av. el Sol Oeste 385, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:04.383-0500] {geocode.py:29} INFO - {'id': 63, 'direccion': 'Av. Roque Saenz Peña 208, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:04.607-0500] {geocode.py:29} INFO - {'id': 72, 'direccion': 'Jr. Carlos Arrieta 240, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:05.321-0500] {geocode.py:29} INFO - {'id': 73, 'direccion': 'Jirón Tejadita 395, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:05.322-0500] {geocode.py:29} INFO - {'id': 74, 'direccion': 'C. Ramón Ribeyro 1063, Lima 15047, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:05.901-0500] {geocode.py:29} INFO - {'id': 66, 'direccion': 'Av. San Martín 234, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:06.079-0500] {geocode.py:29} INFO - {'id': 71, 'direccion': 'Augusto Tamayo Vargas 395, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:06.345-0500] {geocode.py:29} INFO - {'id': 76, 'direccion': 'Jirón Las Mimosas 275, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:07.001-0500] {geocode.py:29} INFO - {'id': 78, 'direccion': 'Av. el Sol 196, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:07.002-0500] {geocode.py:29} INFO - {'id': 77, 'direccion': 'Jirón Pedro Martinto 296, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:07.299-0500] {geocode.py:29} INFO - {'id': 79, 'direccion': 'Ca. las Magnolias 160, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:07.426-0500] {geocode.py:29} INFO - {'id': 80, 'direccion': 'Av. Almte. Miguel Grau 1502, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:07.691-0500] {geocode.py:29} INFO - {'id': 81, 'direccion': 'Av. República de Panamá 348, Barranco 15049, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:08.588-0500] {geocode.py:29} INFO - {'id': 82, 'direccion': 'Jirón Pedro Martinto 182, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:08.589-0500] {geocode.py:29} INFO - {'id': 85, 'direccion': 'Niño Héroe "Felipe Semorile Liman\' Park, Av. el Sol Este 562, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:08.687-0500] {geocode.py:29} INFO - {'id': 86, 'direccion': 'Av. Almte. Miguel Grau 1540, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:08.751-0500] {geocode.py:29} INFO - {'id': 87, 'direccion': 'Jirón Las Mimosas 259, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:09.035-0500] {geocode.py:29} INFO - {'id': 88, 'direccion': 'Jr. Tumbes 318, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:09.616-0500] {geocode.py:29} INFO - {'id': 75, 'direccion': 'Av. el Sol Oeste 165, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:10.121-0500] {geocode.py:29} INFO - {'id': 89, 'direccion': 'Mal. Souza 111, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:10.151-0500] {geocode.py:29} INFO - {'id': 91, 'direccion': 'Jirón Tejadita 391-395, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:10.204-0500] {geocode.py:29} INFO - {'id': 90, 'direccion': 'Teodosio Parreño 341, Barranco 15047, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:10.402-0500] {geocode.py:29} INFO - {'id': 93, 'direccion': 'Av. Sáenz Peña 291, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:10.437-0500] {geocode.py:29} INFO - {'id': 92, 'direccion': 'Parque Gonzáles Prada 187, Barranco 15043, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:10.964-0500] {geocode.py:29} INFO - {'id': 94, 'direccion': 'Rosendo Vidaurre 473, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:11.818-0500] {geocode.py:29} INFO - {'id': 97, 'direccion': 'Av. el Sol Oeste 475, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:11.963-0500] {geocode.py:29} INFO - {'id': 96, 'direccion': 'Av. el Sol 196, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:12.163-0500] {geocode.py:29} INFO - {'id': 98, 'direccion': 'Jirón Juan Fanning 214, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:12.207-0500] {geocode.py:29} INFO - {'id': 99, 'direccion': 'C. Ramón Ribeyro 1063, Lima 15047, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:12.547-0500] {geocode.py:29} INFO - {'id': 95, 'direccion': 'Av. Sáenz Peña 136, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:12.788-0500] {geocode.py:29} INFO - {'id': 100, 'direccion': 'Jr. Buenaventura Aguirre 209, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:14.502-0500] {geocode.py:29} INFO - {'id': 106, 'direccion': 'Malecón Armendáriz 179, Lima 15074, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:14.505-0500] {geocode.py:29} INFO - {'id': 105, 'direccion': 'C. Coronel Alfonso Ugarte 455, Magdalena del Mar 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:15.131-0500] {geocode.py:29} INFO - {'id': 102, 'direccion': 'Ca. Francisco Del Castillo 665, Barranco 15047, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:15.248-0500] {geocode.py:29} INFO - {'id': 103, 'direccion': 'Teodosio Parreño 122, Lima 15047, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:15.424-0500] {geocode.py:29} INFO - {'id': 104, 'direccion': '15063, Barranco 15063, Peru', 'precision': 'GEOMETRIC_CENTER', 'type': 'establishment'}
+[2025-03-23T20:25:16.028-0500] {geocode.py:29} INFO - {'id': 108, 'direccion': 'Av. Almte. Miguel Grau 1430, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:16.092-0500] {geocode.py:29} INFO - {'id': 107, 'direccion': 'Av. Prolongación General Jose de San Martin 655, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:16.404-0500] {geocode.py:29} INFO - {'id': 101, 'direccion': 'Av. el Sol 161, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:16.483-0500] {geocode.py:29} INFO - {'id': 109, 'direccion': 'Jr. Maynas 107, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:16.595-0500] {geocode.py:29} INFO - {'id': 110, 'direccion': 'Av Tejada 350, Lima 15047, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:16.803-0500] {geocode.py:29} INFO - {'id': 111, 'direccion': 'Jiron German Noriega del Valle 201, Barranco 15049, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:17.610-0500] {geocode.py:29} INFO - {'id': 112, 'direccion': 'Jirón Pedro Martinto 299, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:17.984-0500] {geocode.py:29} INFO - {'id': 115, 'direccion': 'Mal. Souza 123, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:18.066-0500] {geocode.py:29} INFO - {'id': 116, 'direccion': 'Av. Almte. Miguel Grau 1430, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:18.128-0500] {geocode.py:29} INFO - {'id': 113, 'direccion': 'Jr. Maynas 107, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:18.135-0500] {geocode.py:29} INFO - {'id': 117, 'direccion': 'Av. el Sol 450, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:18.162-0500] {geocode.py:29} INFO - {'id': 114, 'direccion': 'Av. San Martín 236, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:18.953-0500] {geocode.py:29} INFO - {'id': 118, 'direccion': 'Jirón Las Mimosas 108, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:19.401-0500] {geocode.py:29} INFO - {'id': 119, 'direccion': 'Jr. Carlos Arrieta 196, Barranco LIMA04, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:19.467-0500] {geocode.py:29} INFO - {'id': 121, 'direccion': 'Jr. Buenaventura Aguirre 103c, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:19.527-0500] {geocode.py:29} INFO - {'id': 123, 'direccion': 'Delucchi 200, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:19.533-0500] {geocode.py:29} INFO - {'id': 122, 'direccion': 'Jiron Martinez de Pinillos 130, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:19.545-0500] {geocode.py:29} INFO - {'id': 124, 'direccion': 'Corpancho, 166, Barranco 15063, Peru', 'precision': 'GEOMETRIC_CENTER', 'type': 'establishment'}
+[2025-03-23T20:25:20.314-0500] {geocode.py:29} INFO - {'id': 125, 'direccion': 'Av. el Sol 161, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:21.977-0500] {geocode.py:29} INFO - {'id': 131, 'direccion': 'Av. el Sol 155, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:22.616-0500] {geocode.py:29} INFO - {'id': 132, 'direccion': 'Av. San Martín 695, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:23.072-0500] {geocode.py:29} INFO - {'id': 128, 'direccion': 'Felipe Sassone 181, Barranco 15047, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:23.239-0500] {geocode.py:29} INFO - {'id': 127, 'direccion': 'Jirón Las Mimosas 131, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:23.439-0500] {geocode.py:29} INFO - {'id': 134, 'direccion': 'Jr. Buenaventura Aguirre 103, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:23.957-0500] {geocode.py:29} INFO - {'id': 135, 'direccion': 'Jirón 2 de Mayo 150, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:24.503-0500] {geocode.py:29} INFO - {'id': 133, 'direccion': 'Pje. Fidelli 109, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:24.561-0500] {geocode.py:29} INFO - {'id': 129, 'direccion': 'Av. Almte. Miguel Grau 1510, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:25.419-0500] {geocode.py:29} INFO - {'id': 137, 'direccion': 'Jiron Martinez de Pinillos 126, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:25.727-0500] {geocode.py:29} INFO - {'id': 139, 'direccion': 'Av. San Martín 564, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:26.169-0500] {geocode.py:29} INFO - {'id': 141, 'direccion': 'Av. el Sol Este 176, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:26.180-0500] {geocode.py:29} INFO - {'id': 140, 'direccion': 'Jirón Fedelli 105, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:26.807-0500] {geocode.py:29} INFO - {'id': 138, 'direccion': 'Jirón Juan Fanning 100, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:26.807-0500] {geocode.py:29} INFO - {'id': 142, 'direccion': 'Av. Prolongación General Jose de San Martin 655, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:27.374-0500] {geocode.py:29} INFO - {'id': 143, 'direccion': 'Felipe Sassone 181, Barranco 15047, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:27.379-0500] {geocode.py:29} INFO - {'id': 136, 'direccion': 'Av. Almte. Miguel Grau 1130, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:27.873-0500] {geocode.py:29} INFO - {'id': 145, 'direccion': 'Av. el Sol Este 116, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:27.878-0500] {geocode.py:29} INFO - {'id': 144, 'direccion': 'Av. el Sol Este 176, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:28.707-0500] {geocode.py:29} INFO - {'id': 146, 'direccion': 'Jirón Centenario 169, Chorrillos 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:29.294-0500] {geocode.py:29} INFO - {'id': 148, 'direccion': 'Av. el Sol 161, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:29.374-0500] {geocode.py:29} INFO - {'id': 149, 'direccion': 'Auxiliar Av. Pedro de Osma 315, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:29.433-0500] {geocode.py:29} INFO - {'id': 151, 'direccion': 'Malecon Jorge Souza Miranda 254, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:29.477-0500] {geocode.py:29} INFO - {'id': 150, 'direccion': 'Ca. San Martín 590, Miraflores 15046, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:29.545-0500] {geocode.py:29} INFO - {'id': 147, 'direccion': 'Municipalidad Metropolitana de, Av. Pedro de Osma 307, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:30.263-0500] {geocode.py:29} INFO - {'id': 152, 'direccion': 'Mal. Paúl Harris 280, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:30.798-0500] {geocode.py:29} INFO - {'id': 154, 'direccion': 'Av. el Sol Este 289, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:30.884-0500] {geocode.py:29} INFO - {'id': 155, 'direccion': 'Bresciani 151, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:30.969-0500] {geocode.py:29} INFO - {'id': 157, 'direccion': 'Av. el Sol Oeste 277, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:31.108-0500] {geocode.py:29} INFO - {'id': 158, 'direccion': 'VX6G+H3P, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:31.928-0500] {geocode.py:29} INFO - {'id': 159, 'direccion': 'Av. el Sol 335, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:31.939-0500] {geocode.py:29} INFO - {'id': 156, 'direccion': 'Jirón Las Mimosas 287, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'bar'}
+[2025-03-23T20:25:32.306-0500] {geocode.py:29} INFO - {'id': 160, 'direccion': 'C. Alfonso Ugarte 233, Miraflores 15074, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:32.387-0500] {geocode.py:29} INFO - {'id': 161, 'direccion': 'Jr.Batalla De Junin 267, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:32.483-0500] {geocode.py:29} INFO - {'id': 162, 'direccion': 'San Roque 203, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:32.513-0500] {geocode.py:29} INFO - {'id': 163, 'direccion': 'Jr.Batalla De Junin 300, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:33.444-0500] {geocode.py:29} INFO - {'id': 165, 'direccion': 'Jr Progreso 450, Barranco 15049, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:33.764-0500] {geocode.py:29} INFO - {'id': 166, 'direccion': '28 De Julio 402, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:33.915-0500] {geocode.py:29} INFO - {'id': 167, 'direccion': 'Av. República de Panamá 330, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:33.946-0500] {geocode.py:29} INFO - {'id': 168, 'direccion': 'Av. el Sol Oeste 145, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:34.016-0500] {geocode.py:29} INFO - {'id': 169, 'direccion': 'Pje. Pedro Solari 115, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:34.266-0500] {geocode.py:29} INFO - {'id': 164, 'direccion': 'Jr.Batalla De Junin 240, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:34.828-0500] {geocode.py:29} INFO - {'id': 170, 'direccion': 'Confraternidad 1, Los Olivos 15307, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:35.121-0500] {geocode.py:29} INFO - {'id': 171, 'direccion': 'Av. el Sol Este 170, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:35.296-0500] {geocode.py:29} INFO - {'id': 174, 'direccion': 'Mal. Paúl Harris 280, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:35.341-0500] {geocode.py:29} INFO - {'id': 176, 'direccion': 'Calle 2 de Mayo 114, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:35.995-0500] {geocode.py:29} INFO - {'id': 178, 'direccion': 'Av. Almte. Miguel Grau 11, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:36.451-0500] {geocode.py:29} INFO - {'id': 179, 'direccion': 'Av. Francisco Bolognesi 241, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:36.495-0500] {geocode.py:29} INFO - {'id': 181, 'direccion': 'Jirón Tejadita 395, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:36.496-0500] {geocode.py:29} INFO - {'id': 180, 'direccion': 'Av. P.º de la Republica 348. 1601, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:36.620-0500] {geocode.py:29} INFO - {'id': 182, 'direccion': 'Av. Almte. Miguel Grau 1130, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:36.699-0500] {geocode.py:29} INFO - {'id': 183, 'direccion': 'Mal. Paúl Harris 382, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:37.326-0500] {geocode.py:29} INFO - {'id': 185, 'direccion': 'VX6G+J5C, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:39.183-0500] {geocode.py:29} INFO - {'id': 191, 'direccion': 'Malecón Grau 675, Chorrillos 15064, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:39.974-0500] {geocode.py:29} INFO - {'id': 192, 'direccion': 'Jr. Carlos Arrieta 240, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:40.107-0500] {geocode.py:29} INFO - {'id': 189, 'direccion': 'C. Coronel Alfonso Ugarte 450, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:40.280-0500] {geocode.py:29} INFO - {'id': 187, 'direccion': 'De Los Santos 198, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:40.988-0500] {geocode.py:29} INFO - {'id': 186, 'direccion': 'Felipe Sassone 200, Barranco 15047, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:41.005-0500] {geocode.py:29} INFO - {'id': 193, 'direccion': 'Municipalidad Metropolitana de, Av. Pedro de Osma 307, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:41.151-0500] {geocode.py:29} INFO - {'id': 190, 'direccion': 'Jirón Sáenz Peña 206-2, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:41.321-0500] {geocode.py:29} INFO - {'id': 195, 'direccion': 'C. Coronel Alfonso Ugarte 260, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:41.426-0500] {geocode.py:29} INFO - {'id': 198, 'direccion': 'Municipalidad Metropolitana de, Av. Pedro de Osma 307, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:41.625-0500] {geocode.py:29} INFO - {'id': 199, 'direccion': 'Av. P.º de la República 6465, Lima 15047, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:42.740-0500] {geocode.py:29} INFO - {'id': 202, 'direccion': 'Av. Almte. Miguel Grau 1554, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:43.326-0500] {geocode.py:29} INFO - {'id': 204, 'direccion': 'Av. el Sol Este 289, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:44.191-0500] {geocode.py:29} INFO - {'id': 209, 'direccion': 'Chipoco, Av. Almte. Miguel Grau, Barranco 15063, Peru', 'precision': 'GEOMETRIC_CENTER', 'type': 'bus_station'}
+[2025-03-23T20:25:44.657-0500] {geocode.py:29} INFO - {'id': 206, 'direccion': 'Jirón Sáenz Peña 206-2, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:44.696-0500] {geocode.py:29} INFO - {'id': 210, 'direccion': 'Las Dalias 170, Lima 15024, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:44.804-0500] {geocode.py:29} INFO - {'id': 205, 'direccion': 'Av. el Sol 161, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:45.120-0500] {geocode.py:29} INFO - {'id': 203, 'direccion': 'Dpto. 1302, Av. el Sol Oeste 335, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:45.576-0500] {geocode.py:29} INFO - {'id': 211, 'direccion': 'Mal. Souza 112, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:46.962-0500] {geocode.py:29} INFO - {'id': 200, 'direccion': 'Jr. Carlos Arrieta 408, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:47.155-0500] {geocode.py:29} INFO - {'id': 216, 'direccion': 'Av. Almte. Miguel Grau 1554, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:47.774-0500] {geocode.py:29} INFO - {'id': 217, 'direccion': 'Av. el Sol Este 230, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:47.801-0500] {geocode.py:29} INFO - {'id': 214, 'direccion': 'RXXG+393, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:48.349-0500] {geocode.py:29} INFO - {'id': 218, 'direccion': 'Av. San Martín 645, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:48.355-0500] {geocode.py:29} INFO - {'id': 213, 'direccion': 'Jirón 2 de Mayo 187, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:48.453-0500] {geocode.py:29} INFO - {'id': 219, 'direccion': 'Av. Almte. Miguel Grau 1540, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:49.018-0500] {geocode.py:29} INFO - {'id': 215, 'direccion': 'Mal. Souza 126, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:49.127-0500] {geocode.py:29} INFO - {'id': 221, 'direccion': 'Av. Pedro de Osma 301, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:49.184-0500] {geocode.py:29} INFO - {'id': 222, 'direccion': 'Av. San Martín 450, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:49.843-0500] {geocode.py:29} INFO - {'id': 223, 'direccion': 'Pje. El Sol 555, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:49.849-0500] {geocode.py:29} INFO - {'id': 226, 'direccion': 'VX6G+H3P, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:50.157-0500] {geocode.py:29} INFO - {'id': 225, 'direccion': 'Av. Chorrillos 162, Chorrillos 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:50.401-0500] {geocode.py:29} INFO - {'id': 227, 'direccion': 'Av. Pedro de Osma 405, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:50.507-0500] {geocode.py:29} INFO - {'id': 228, 'direccion': 'Jirón Centenario 195, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:50.526-0500] {geocode.py:29} INFO - {'id': 229, 'direccion': 'Bresciani 153, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:51.245-0500] {geocode.py:29} INFO - {'id': 230, 'direccion': 'C. Juan Fanning 735, Miraflores 15074, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:51.250-0500] {geocode.py:29} INFO - {'id': 231, 'direccion': 'Av. el Sol 385, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:51.502-0500] {geocode.py:29} INFO - {'id': 232, 'direccion': 'Av. San Martín 625, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:51.712-0500] {geocode.py:29} INFO - {'id': 233, 'direccion': 'Av. el Sol Oeste 145, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:51.889-0500] {geocode.py:29} INFO - {'id': 235, 'direccion': 'Av. el Sol Oeste 385, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:51.891-0500] {geocode.py:29} INFO - {'id': 234, 'direccion': 'Jr. Pérez Roca 168, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:52.527-0500] {geocode.py:29} INFO - {'id': 237, 'direccion': 'C. Coronel Alfonso Ugarte 260, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:52.558-0500] {geocode.py:29} INFO - {'id': 236, 'direccion': 'Malecon Jorge Souza Miranda 254, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:52.828-0500] {geocode.py:29} INFO - {'id': 238, 'direccion': 'Av. República de Panamá 395, La Victoria 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:53.069-0500] {geocode.py:29} INFO - {'id': 239, 'direccion': 'Felipe Sassone 181, Barranco 15047, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:53.212-0500] {geocode.py:29} INFO - {'id': 242, 'direccion': '312, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:53.251-0500] {geocode.py:29} INFO - {'id': 241, 'direccion': 'Jirón Pedro Martinto 114, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:53.862-0500] {geocode.py:29} INFO - {'id': 244, 'direccion': 'Av. Almte. Miguel Grau 1503, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'cafe'}
+[2025-03-23T20:25:53.902-0500] {geocode.py:29} INFO - {'id': 245, 'direccion': 'Jirón Juan Fanning 107, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:54.102-0500] {geocode.py:29} INFO - {'id': 246, 'direccion': 'RXXG+393, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:54.399-0500] {geocode.py:29} INFO - {'id': 248, 'direccion': '312, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:54.528-0500] {geocode.py:29} INFO - {'id': 253, 'direccion': 'Av. el Sol 161, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:54.685-0500] {geocode.py:29} INFO - {'id': 276, 'direccion': 'Dalias 113, Miraflores 15074, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:55.289-0500] {geocode.py:29} INFO - {'id': 279, 'direccion': 'Jirón Centenario 157, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:55.361-0500] {geocode.py:29} INFO - {'id': 287, 'direccion': 'Lima PE, C. Ramón Ribeyro 1062, Barranco 15047, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:55.459-0500] {geocode.py:29} INFO - {'id': 294, 'direccion': 'Av. San Martín 615, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:55.805-0500] {geocode.py:29} INFO - {'id': 296, 'direccion': '28 De Julio 297, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:55.927-0500] {geocode.py:29} INFO - {'id': 298, 'direccion': '051, Av. el Sol Oeste 115, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'cafe'}
+[2025-03-23T20:25:56.058-0500] {geocode.py:29} INFO - {'id': 304, 'direccion': 'Av. el Sol Este 313, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:56.641-0500] {geocode.py:29} INFO - {'id': 320, 'direccion': 'Av. San Martín 234, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:56.726-0500] {geocode.py:29} INFO - {'id': 321, 'direccion': 'Ca. Enrique Barrón 167, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:56.833-0500] {geocode.py:29} INFO - {'id': 322, 'direccion': 'Av. Almte. Miguel Grau 1402, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:57.108-0500] {geocode.py:29} INFO - {'id': 323, 'direccion': 'Av. San Martín 236, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:57.289-0500] {geocode.py:29} INFO - {'id': 324, 'direccion': 'Jirón Las Mimosas 161, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:57.365-0500] {geocode.py:29} INFO - {'id': 325, 'direccion': 'Av. República de Panamá 330, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:58.007-0500] {geocode.py:29} INFO - {'id': 326, 'direccion': 'Jr. Carlos Arrieta 190, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:58.046-0500] {geocode.py:29} INFO - {'id': 328, 'direccion': 'Av. Almte. Miguel Grau 1510, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:58.163-0500] {geocode.py:29} INFO - {'id': 333, 'direccion': 'Jirón 2 de Mayo 150, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:58.562-0500] {geocode.py:29} INFO - {'id': 334, 'direccion': 'Av. Almte. Miguel Grau 11, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:58.673-0500] {geocode.py:29} INFO - {'id': 336, 'direccion': 'C. Ramón Ribeyro 890, Miraflores 15047, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:58.745-0500] {geocode.py:29} INFO - {'id': 338, 'direccion': 'Jr. Buenaventura Aguirre 100, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:59.343-0500] {geocode.py:29} INFO - {'id': 339, 'direccion': 'Jirón Centenario 346, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'premise'}
+[2025-03-23T20:25:59.389-0500] {geocode.py:29} INFO - {'id': 340, 'direccion': 'Ca. Enrique Barrón 377, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:59.517-0500] {geocode.py:29} INFO - {'id': 341, 'direccion': 'Pl. San Francisco 214, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:25:59.846-0500] {geocode.py:29} INFO - {'id': 342, 'direccion': 'Av. el Sol 161, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'establishment'}
+[2025-03-23T20:25:59.982-0500] {geocode.py:29} INFO - {'id': 343, 'direccion': 'Malecon Jorge Souza Miranda 254, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:26:00.072-0500] {geocode.py:29} INFO - {'id': 344, 'direccion': 'Bresciani 151, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:26:00.647-0500] {geocode.py:29} INFO - {'id': 345, 'direccion': 'Mal. Paúl Harris 280, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:26:00.718-0500] {geocode.py:29} INFO - {'id': 347, 'direccion': 'Malecon Jorge Souza Miranda 254, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:26:00.801-0500] {geocode.py:29} INFO - {'id': 348, 'direccion': 'Mal. Paúl Harris 280, Barranco 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:26:01.184-0500] {geocode.py:29} INFO - {'id': 349, 'direccion': 'Av. Sáenz Peña 291, Lima 15063, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:26:01.318-0500] {geocode.py:29} INFO - {'id': 358, 'direccion': 'Av. José Pardo 239, Miraflores 15074, Peru', 'precision': 'ROOFTOP', 'type': 'street_address'}
+[2025-03-23T20:26:01.330-0500] {data_wrangling.py:214} INFO - 3. Terminando obtención de dirección y precisión de coordenadas!!
+[2025-03-23T20:26:01.332-0500] {logging_mixin.py:190} INFO - 0      ROOFTOP
+2      ROOFTOP
+3      ROOFTOP
+4      ROOFTOP
+6      ROOFTOP
+        ...   
+345    ROOFTOP
+347    ROOFTOP
+348    ROOFTOP
+349    ROOFTOP
+358    ROOFTOP
+Name: precision, Length: 251, dtype: object
+[2025-03-23T20:26:01.332-0500] {data_wrangling.py:220} INFO - 4
+[2025-03-23T20:26:01.333-0500] {data_wrangling.py:221} INFO - 4
+[2025-03-23T20:26:19.112-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:26:22.150-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:26:23.935-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:26:26.048-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:26:41.656-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:26:41.949-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:26:41.995-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:26:43.278-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:26:52.159-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:26:58.814-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:26:58.917-0500] {logging_mixin.py:190} WARNING - /home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/utils/general.py:23 SettingWithCopyWarning:
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+[2025-03-23T20:26:58.918-0500] {logging_mixin.py:190} INFO - El % de coincidencias para la columna 'area': 94.29% de 105
+[2025-03-23T20:26:58.921-0500] {logging_mixin.py:190} WARNING - /home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/utils/general.py:23 SettingWithCopyWarning:
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+[2025-03-23T20:26:58.922-0500] {logging_mixin.py:190} INFO - El % de coincidencias para la columna 'dormitorios': 98.68% de 152
+[2025-03-23T20:26:58.924-0500] {logging_mixin.py:190} WARNING - /home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/utils/general.py:23 SettingWithCopyWarning:
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+[2025-03-23T20:26:58.926-0500] {logging_mixin.py:190} INFO - El % de coincidencias para la columna 'banos': 82.39% de 159
+[2025-03-23T20:26:58.928-0500] {logging_mixin.py:190} WARNING - /home/luis/Proyectos/PrecioDeDepartamentos/Alquiler-deparamentos-en-lima/An-lisis-del-alquiler-de-departamentos-en-Lima/Pipeline/AirflowPipeline/utils/general.py:23 SettingWithCopyWarning:
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+[2025-03-23T20:26:58.930-0500] {logging_mixin.py:190} INFO - El % de coincidencias para la columna 'antiguedad': 97.78% de 45
+[2025-03-23T20:26:58.930-0500] {data_wrangling.py:270} INFO - La variable area redujo 15 nulos
+[2025-03-23T20:26:58.931-0500] {data_wrangling.py:270} INFO - La variable dormitorios redujo 23 nulos
+[2025-03-23T20:26:58.932-0500] {data_wrangling.py:270} INFO - La variable banos redujo 11 nulos
+[2025-03-23T20:26:58.932-0500] {data_wrangling.py:270} INFO - La variable antiguedad redujo 0 nulos
+[2025-03-23T20:26:58.935-0500] {data_wrangling.py:279} INFO - 4. Terminando imputación de nulos de variables básicas con la descripción!!
+[2025-03-23T20:27:05.834-0500] {_client.py:1025} INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-03-23T20:27:07.124-0500] {geocode.py:50} INFO - {'id': 84, 'latitud': -12.1411508, 'longitud': -77.0221186, 'precision': 'APPROXIMATE', 'type': 'locality'}
+[2025-03-23T20:27:07.124-0500] {geocode.py:50} INFO - {'id': 52, 'latitud': -12.1411508, 'longitud': -77.0221186, 'precision': 'APPROXIMATE', 'type': 'locality'}
+[2025-03-23T20:27:07.140-0500] {geocode.py:50} INFO - {'id': 126, 'latitud': -12.1411508, 'longitud': -77.0221186, 'precision': 'APPROXIMATE', 'type': 'locality'}
+[2025-03-23T20:27:07.194-0500] {geocode.py:50} INFO - {'id': 249, 'latitud': -12.1204501, 'longitud': -77.0146784, 'precision': 'GEOMETRIC_CENTER', 'type': 'route'}
+[2025-03-23T20:27:07.200-0500] {data_wrangling.py:336} INFO - 5. Terminando imputación de nulos de coordenadas con la descripción!!
+[2025-03-23T20:27:07.226-0500] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-23T20:27:07.230-0500] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-23T20:27:07.230-0500] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=proceso_etl, task_id=tarea_datawrangling, run_id=manual__2025-03-23T21:23:34-04:00, execution_date=20250324T012334, start_date=20250324T012414, end_date=20250324T012707
+[2025-03-23T20:27:07.303-0500] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-23T20:27:07.318-0500] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-23T20:27:07.333-0500] {local_task_job_runner.py:245} INFO - ::endgroup::

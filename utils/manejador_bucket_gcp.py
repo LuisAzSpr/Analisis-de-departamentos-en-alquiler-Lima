@@ -7,7 +7,8 @@ import json
 import io
 
 # set key credentials file path
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '/home/luis/Downloads/first-outlet-454113-e2-e353fd319c22.json'
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = '/home/luis/Downloads/proyecto-alquiler-en-lima-222da798c1fc.json'
+
 
 # define function that uploads a file from the bucket
 def upload_cs_file(bucket_name, source_file_name, destination_file_name):
@@ -100,11 +101,10 @@ def extraer_datos_de_folder_gcp(bucket_name, folder_name):
 
 if __name__=='__main__':
     jsons = extraer_datos_de_folder_gcp(
-        "us-central1-composer-dev-lu-620fcc1f-bucket",
-        "data/rawdata/barranco"
+        "bucket-proyectos",
+        "data_alquileres_lima/rawdata/barranco"
     )
     print(json.dumps(jsons, indent=2))
-
 
 
 
